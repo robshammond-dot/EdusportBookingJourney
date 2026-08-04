@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Journey: From Booking to Takeoff | Edusport Travel</title>
+<style>
+  :root{
+    --navy:#034EA1;
+    --navy-dark:#023d80;
+    --green:#009040;
+    --green-light:#e8f6ee;
+    --amber:#f2a900;
+    --ink:#1c2430;
+    --grey:#5b6472;
+    --line:#e3e7ee;
+    --paper:#ffffff;
+    --bg:#eef1f6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;
+  }
+  .page{
+    max-width:1000px; margin:32px auto; background:var(--paper);
+    border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(20,30,60,.12);
+    position:relative;
+  }
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; background:#fff; border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; color:var(--navy); font-size:15px; letter-spacing:.2px;}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block;}
+  .topbar .label{font-size:12px; color:var(--grey); text-transform:uppercase; letter-spacing:.08em;}
+  .hero{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%); color:#fff; padding:36px 28px 28px;}
+  .hero .eyebrow{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:#bcd4f2; font-weight:700; margin-bottom:10px;}
+  .hero h1{margin:0 0 10px; font-size:30px; line-height:1.25;}
+  .hero h1 .accent{color:#5ee0a0;}
+  .hero p{margin:0; color:#dbe7f7; font-size:15px; max-width:720px;}
+  .leadstrip{background:var(--green); color:#fff; padding:12px 28px; font-size:14px; font-weight:700;}
+  .body{padding:30px 28px 40px;}
+  .print-btn{
+    background:var(--navy); color:#fff; border:none;
+    padding:8px 14px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .print-btn:hover{background:var(--navy-dark);}
+  nav.jump{background:var(--green-light); border:1px solid #cdeedb; border-radius:12px; padding:16px 20px; margin:0 0 28px;}
+  nav.jump h3{margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--green);}
+  nav.jump ol{margin:0; padding-left:18px; columns:2; column-gap:24px; font-size:13.5px;}
+  nav.jump li{margin-bottom:5px;}
+  nav.jump a{color:var(--navy); text-decoration:none;}
+  nav.jump a:hover{text-decoration:underline;}
+  section{margin:0 0 34px; scroll-margin-top:20px;}
+  h2{font-size:21px; color:var(--navy); margin:0 0 4px; border-bottom:2px solid var(--line); padding-bottom:10px;}
+  h2 .num{color:var(--green); margin-right:6px;}
+  .sub{color:var(--grey); font-size:13.5px; margin:6px 0 16px;}
+  .backtop{display:inline-block; font-size:12px; color:var(--navy); text-decoration:none; margin-top:6px;}
+  .backtop:hover{text-decoration:underline;}
+  .callout{border-radius:12px; padding:16px 18px; margin:16px 0; font-size:14px;}
+  .callout.info{background:#eaf2fc; border:1px solid #cfe0f7;}
+  .callout.warn{background:#fff6e6; border:1px solid #f3ddad;}
+  .callout.open{background:#fdeef0; border:1px solid #f5c9cf;}
+  .callout strong{display:block; margin-bottom:4px; color:var(--navy);}
+  .callout.warn strong{color:#9a6b00;}
+  .callout.open strong{color:#a3323f;}
+  table.qa{width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0;}
+  table.qa th, table.qa td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.qa th{background:#f5f7fb; color:var(--navy); font-size:12px; text-transform:uppercase; letter-spacing:.04em;}
+  .windowhead{
+    display:flex; align-items:center; gap:12px; background:var(--navy); color:#fff;
+    padding:14px 18px; border-radius:12px 12px 0 0; font-size:15px; font-weight:700;
+  }
+  .windowhead .pill{background:rgba(255,255,255,.18); border-radius:999px; padding:3px 12px; font-size:12px; font-weight:700;}
+  .windowbody{border:1px solid var(--line); border-top:none; border-radius:0 0 12px 12px; padding:6px 0 10px;}
+  .mailer{padding:16px 18px; border-bottom:1px solid var(--line);}
+  .mailer:last-child{border-bottom:none;}
+  .mailer .mtitle{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .mailer .mname{font-weight:700; color:var(--ink); font-size:14.5px;}
+  .mailer .mtiming{font-size:12px; color:var(--green); font-weight:700; background:var(--green-light); padding:2px 10px; border-radius:999px; white-space:nowrap;}
+  .mailer .msubject{font-size:13px; color:var(--grey); margin-top:4px; font-style:italic;}
+  .mailer ul{margin:8px 0 0; padding-left:18px; font-size:13.5px;}
+  .mailer li{margin-bottom:4px;}
+  .badge-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+  .badge{font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; background:#f0f2f6; color:var(--grey);}
+  .badge.merge{background:#eaf2fc; color:var(--navy);}
+  footer{background:#f5f7fb; padding:18px 28px; text-align:center; font-size:12px; color:var(--grey); border-top:1px solid var(--line);}
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none; margin:0;}
+    .print-btn{display:none;}
+    nav.jump{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="page" id="top">
+
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>EDUSPORT TRAVEL AND TOURS</div>
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Customer Journey Series</div>
+    <h1>Booking Journey: From <span class="accent">Booking</span> to Takeoff</h1>
+    <p>The pre-travel and post-travel mailer series drafted for Edusport travellers, organised by how far out they book. Consolidated here for review, with Nicky's open questions carried through so nothing gets lost before this moves to build.</p>
+  </div>
+
+  <div class="leadstrip">📌 Status: drafted content only, not yet built as a live Freshmarketer Journey. Needs a working session to land the open questions below before build.</div>
+
+  <div class="body">
+
+    <nav class="jump">
+      <h3>Jump to a section</h3>
+      <ol>
+        <li><a href="#status">Where This Stands</a></li>
+        <li><a href="#open-questions">Open Questions from Nicky</a></li>
+        <li><a href="#volume">Mailer Volume, At a Glance</a></li>
+        <li><a href="#long">Long Window (9–12 months out)</a></li>
+        <li><a href="#medium">Medium Window (6–3 months out)</a></li>
+        <li><a href="#short">Short Window (3–1 months out)</a></li>
+        <li><a href="#post">Post-Travel Series</a></li>
+        <li><a href="#build">How This Actually Gets Built</a></li>
+        <li><a href="#next">Suggested Next Steps</a></li>
+      </ol>
+    </nav>
+
+    <section id="status">
+      <h2><span class="num">01</span>Where This Stands</h2>
+      <p class="sub">Current state, not target state</p>
+      <p>This is a full pre-travel and post-travel mailer series, drafted as email copy across four booking-to-travel windows: Long (9–12 months out), Medium (6–3 months out), Short (3–1 months out), and Post-Travel. It has not been built as a live journey yet. Nicky's feedback below is the open input this needs before it moves to build.</p>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="open-questions">
+      <h2><span class="num">02</span>Open Questions from Nicky</h2>
+      <p class="sub">Carried forward from her review, still needing a decision</p>
+      <table class="qa">
+        <tr><th>Raised</th><th>What it means for this build</th></tr>
+        <tr>
+          <td>Volume of mailers</td>
+          <td>10 mailers before travel in the Long window may be too many, especially since customers are also communicating directly with their consultant. Worth looking at consolidating content rather than cutting touchpoints blind, see <a href="#volume">Mailer Volume, At a Glance</a> below.</td>
+        </tr>
+        <tr>
+          <td>Destination-specific content</td>
+          <td>Several mailers reference visa requirements, local highlights, cuisine, and event venues, populated per destination. Need to confirm whether this level of destination detail is available from current booking data, or whether it has to be manually maintained per event/destination.</td>
+        </tr>
+        <tr>
+          <td>Infographics / attachments</td>
+          <td>Journeys can't carry file attachments, that's only possible in a bulk mailer email template. Where an infographic is genuinely wanted, the options are: build it directly into the email as an image, or host it online and link to it from the journey.</td>
+        </tr>
+        <tr>
+          <td>Rollout scope</td>
+          <td>Agreed starting point: one event first, then expand once proven. Which event that is still needs confirming.</td>
+        </tr>
+        <tr>
+          <td>Journey vs Sequence</td>
+          <td>Open question on the right build mechanism, a Freshmarketer Journey with designed mailers, or a Freshsales Sequence with email templates. Worth a short working session comparing the two before committing either way.</td>
+        </tr>
+      </table>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="volume">
+      <h2><span class="num">03</span>Mailer Volume, At a Glance</h2>
+      <p class="sub">All four windows, side by side</p>
+      <table class="qa">
+        <tr><th>Window</th><th>Booking-to-travel</th><th>Mailers drafted</th></tr>
+        <tr><td>Long</td><td>9–12 months out</td><td>10</td></tr>
+        <tr><td>Medium</td><td>6–3 months out</td><td>4</td></tr>
+        <tr><td>Short</td><td>3–1 months out</td><td>4</td></tr>
+        <tr><td>Post-Travel</td><td>After return</td><td>3</td></tr>
+      </table>
+      <p>The Long window is where Nicky's volume concern lands hardest, 10 mailers over roughly 8–9 months. Below, the mailers most likely to overlap or be foldable into a neighbouring send are flagged with a <span class="badge merge">possible merge</span> tag, this is a starting point for discussion, not a decision.</p>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="long">
+      <h2><span class="num">04</span>Long Window <span style="color:var(--grey); font-weight:400; font-size:16px;">9–12 months before travel</span></h2>
+      <p class="sub">For people who book 9–12 months in advance of travelling · 10 mailers</p>
+
+      <div class="windowhead">Long Window Series <span class="pill">10 mailers</span></div>
+      <div class="windowbody">
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">1. Your Journey Starts Here</span><span class="mtiming">Immediately after booking</span></div>
+          <div class="msubject">"You're officially on your way! Here's what happens next ✈️"</div>
+          <ul>
+            <li>Booking confirmed, sets expectations for what's coming: package confirmation, consultant introduction, regular updates</li>
+            <li>Introduces the named consultant as the point of contact</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">2. Discover Your Destination</span><span class="mtiming">~10 months before travel</span></div>
+          <div class="msubject">"Get to know your destination — your countdown starts now!"</div>
+          <ul>
+            <li>Culture, must-try cuisine, and event atmosphere for the destination</li>
+            <li><strong>Depends on destination-specific content being available, see open question above</strong></li>
+          </ul>
+          <div class="badge-row"><span class="badge merge">possible merge with Mailer 6</span></div>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">3. Plan Like a Pro</span><span class="mtiming">8–9 months before travel</span></div>
+          <div class="msubject">"A little prep goes a long way — your travel checklist 🧳"</div>
+          <ul>
+            <li>Passport validity, visa requirements, travel insurance, optional add-ons/excursions</li>
+            <li>Links to a Travel Checklist page</li>
+          </ul>
+          <div class="badge-row"><span class="badge merge">possible merge with Mailer 7</span></div>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">4. Countdown to Kick-Off</span><span class="mtiming">6 months before travel</span></div>
+          <div class="msubject">"6 months to go — the countdown is on! 🏆"</div>
+          <ul>
+            <li>Behind-the-scenes reassurance: on-ground arrangements underway, travel services confirmed, local highlights being curated</li>
+            <li>Points to social channels for ongoing content</li>
+          </ul>
+          <div class="badge-row"><span class="badge merge">possible merge with Mailer 5</span></div>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">5. The Countdown Continues</span><span class="mtiming">5–6 months before travel</span></div>
+          <div class="msubject">"Your sporting adventure is getting closer — here's what to expect next!"</div>
+          <ul>
+            <li>Confirm flight and seating preferences, review insurance/visa status</li>
+            <li>Reinforces consultant contact details</li>
+          </ul>
+          <div class="badge-row"><span class="badge merge">very similar to Mailer 4, one month apart</span></div>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">6. Destination Highlights</span><span class="mtiming">4–5 months before travel</span></div>
+          <div class="msubject">"Discover the best of [Destination] before you go 🌍"</div>
+          <ul>
+            <li>Venue/stadium spotlight, local hotspots, a landmark for a free day</li>
+            <li><strong>Depends on destination-specific content, same gap as Mailer 2</strong></li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">7. Plan Ahead for a Smooth Trip</span><span class="mtiming">~3–4 months before travel</span></div>
+          <div class="msubject">"Your pre-travel essentials — tick these off early ✅"</div>
+          <ul>
+            <li>Passport/visa re-check, vaccination and medication reminder, notifying the bank, e-SIM purchase link</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">8. Behind the Scenes with Edusport</span><span class="mtiming">~3 months before travel</span></div>
+          <div class="msubject">"We're getting ready for [Event Name] — here's a sneak peek!"</div>
+          <ul>
+            <li>Reassurance-only send: booking is being finalised, documents coming soon</li>
+          </ul>
+          <div class="badge-row"><span class="badge merge">lightest content of the series, strongest candidate to drop or fold in</span></div>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">9. It's Almost Time!</span><span class="mtiming">4 weeks before travel</span></div>
+          <div class="msubject">"Your trip is around the corner — here's what to expect 🧳"</div>
+          <ul>
+            <li>Final documents on the way (tickets, hotel, emergency contacts), on-call reps introduced closer to departure, packing/weather/logistics tips flagged</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">10. Final Pre-Departure Checklist</span><span class="mtiming">Just before travel</span></div>
+          <div class="msubject">"You're almost ready — final checklist before you go!"</div>
+          <ul>
+            <li>Passport/visa, ticket and document copies, flight times and baggage, insurance and emergency contacts</li>
+            <li>Sets expectation that Edusport won't be on-site, but the emergency number is available during travel</li>
+          </ul>
+        </div>
+
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="medium">
+      <h2><span class="num">05</span>Medium Window <span style="color:var(--grey); font-weight:400; font-size:16px;">6–3 months before travel</span></h2>
+      <p class="sub">For people who book 6 to 3 months in advance of travelling · 4 mailers</p>
+
+      <div class="windowhead">Medium Window Series <span class="pill">4 mailers</span></div>
+      <div class="windowbody">
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">1. You're Booked – Let the Countdown Begin!</span><span class="mtiming">Immediately after booking</span></div>
+          <div class="msubject">"You're going to [Destination]! Here's what happens next ✈️"</div>
+          <ul>
+            <li>Confirmation, sets expectation for ticket release dates and documentation timeline</li>
+            <li>Invites upsell: extend stay, upgrade room, add sightseeing days</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">2. Get to Know Your Destination</span><span class="mtiming">1 month after booking (~4–5 months out)</span></div>
+          <div class="msubject">"Your [Destination] travel guide — culture, highlights &amp; must-dos 🌍"</div>
+          <ul>
+            <li>Event energy, local flavour, must-see spots</li>
+            <li>Practical getting-around tips: taxis, public transport, ride-share apps, checking venue distance from hotel</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">3. Prepare Like a Pro</span><span class="mtiming">~3–4 months before travel</span></div>
+          <div class="msubject">"A few things to tick off before your trip 🧳"</div>
+          <ul>
+            <li>Passport, visa, insurance, flight details, airport-to-hotel transport planning</li>
+            <li>Offers local transfer/tour recommendations from the team</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">4. Final Countdown to [Event Name]</span><span class="mtiming">1 month before travel</span></div>
+          <div class="msubject">"1 month to go — you're almost there!"</div>
+          <ul>
+            <li>Final travel pack incoming (tickets, accommodation, key info), confirm flight arrival/departure times</li>
+            <li>Airport-to-hotel is self-arranged, document copies reminder, e-SIM purchase link</li>
+          </ul>
+        </div>
+
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="short">
+      <h2><span class="num">06</span>Short Window <span style="color:var(--grey); font-weight:400; font-size:16px;">3–1 months before travel</span></h2>
+      <p class="sub">For people who book 3 to 1 months in advance of travelling · 4 mailers</p>
+
+      <div class="windowhead">Short Window Series <span class="pill">4 mailers</span></div>
+      <div class="windowbody">
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">1. You're Booked!</span><span class="mtiming">Immediately after booking</span></div>
+          <div class="msubject">"Your trip to [Destination] is confirmed 🎉"</div>
+          <ul>
+            <li>Confirmation, sets expectation for hotel/ticket details and upcoming travel tips</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">2. Make the Most of Your Trip</span><span class="mtiming">Shortly after booking</span></div>
+          <div class="msubject">"Discover local highlights and useful info for [Destination]"</div>
+          <ul>
+            <li>Landmarks, local dishes, getting around by taxi/train/ride-share</li>
+            <li>Suggests downloading a local transport or translation app before departure</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">3. Travel Prep Checklist</span><span class="mtiming">Ahead of departure</span></div>
+          <div class="msubject">"A few things to tick off before you fly 🧳"</div>
+          <ul>
+            <li>Passport, flights, baggage limits, own airport-to-hotel transport, document copies</li>
+          </ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">4. Final Countdown</span><span class="mtiming">A few days before travel</span></div>
+          <div class="msubject">"It's almost game day — get ready for an unforgettable trip!"</div>
+          <ul>
+            <li>Online check-in reminder, hotel details handy, small amount of local currency</li>
+            <li>Invites social tagging @EdusportTravel</li>
+          </ul>
+        </div>
+
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="post">
+      <h2><span class="num">07</span>Post-Travel Series</h2>
+      <p class="sub">Sent after return, same for all three windows · 3 mailers</p>
+
+      <div class="windowhead">Post-Travel Series <span class="pill">3 mailers</span></div>
+      <div class="windowbody">
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">1. Thank You for Travelling with Us</span><span class="mtiming">Shortly after return</span></div>
+          <div class="msubject">"Welcome home — we hope you had an incredible trip!"</div>
+          <ul><li>Warm welcome-home note, invites a reply sharing a highlight or favourite moment</li></ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">2. Share Your Experience</span><span class="mtiming">A few days after return</span></div>
+          <div class="msubject">"We'd love your feedback — it only takes a minute!"</div>
+          <ul><li>Feedback request with a link/button</li></ul>
+        </div>
+
+        <div class="mailer">
+          <div class="mtitle"><span class="mname">3. Stay Connected &amp; Plan Your Next Adventure</span><span class="mtiming">Later, once home</span></div>
+          <div class="msubject">"Where to next? Explore new sporting adventures with us 🏆"</div>
+          <ul><li>Upsell to upcoming packages, invites following Edusport on social</li></ul>
+        </div>
+
+      </div>
+      <div class="callout warn">
+        <strong>Likely overlaps with what's already live</strong>
+        Edusport already runs a Bon Voyage send (pre-departure), a WhatsApp "please send your pics" ask (the Stockpress feedback flow, already built per sport), and a Welcome Home mailer. This is probably what Nicky was actually referring to for the post-travel piece, rather than three brand-new mailers, and the wording on those existing sends has already had a separate refresh at some point. Worth reconciling this drafted 3-mailer content against what's actually live before treating it as new build work, it may just need aligning rather than building from scratch.
+      </div>
+      <div class="callout info">
+        <strong>Existing convention</strong>
+        Master guide notes Post-Travel sends at 3/7/14 days after return, worth confirming this maps cleanly onto the three mailers above before build.
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="build">
+      <h2><span class="num">08</span>Things Worth Deciding Together</h2>
+      <p class="sub">The Fresh build itself sits with Robyn; these are the calls that shape the content and structure first</p>
+
+      <div class="callout warn">
+        <strong>Duration matters for window choice</strong>
+        Classic Sequences are capped at 90 days total. Smart Sequences run on repeating intervals rather than a fixed date. Neither is built for something spanning up to 12 months, so whatever the Long window ends up running on is a different shape of tool to whatever the Medium and Short windows run on. Worth knowing this before locking in content cadence, not a decision to make here.
+      </div>
+
+      <h3 style="color:var(--navy); font-size:16px; margin:20px 0 6px;">What Fresh reliably knows about a booking</h3>
+      <p>Event Name is a multiselect field, so it doesn't get overwritten, older events stay in the list, but it stops being the primary or most obvious one to read off once a new enquiry comes in. Travel Date does get genuinely overwritten, along with the customer status, whenever a new enquiry arrives, that's deliberate, handled by workflows, and exists to keep active quoting and status correct for whatever the customer's current enquiry actually is, not an oversight. The practical effect for this series is the same either way: whatever timing mechanism gets built needs its own way of anchoring to the right trip, rather than assuming the live Contact fields will always point at it.</p>
+
+      <h3 style="color:var(--navy); font-size:16px; margin:20px 0 6px;">Destination content is static, not synced</h3>
+      <p>Event → Destination is a fixed lookup the team already knows, not data missing from Fresh. Rather than treating it as something to sync, write it once per event, directly into that event's content. This only works cleanly for Tier 1 evergreen events (see event tiering above), which is exactly why the pilot should start there.</p>
+
+      <h3 style="color:var(--navy); font-size:16px; margin:20px 0 6px;">Cancellations are already distinguishable</h3>
+      <p>Cancellation is captured as a Lost Reason on the Enquiry, so a cancelled-after-Won customer can be told apart from a pre-booking Lost. One traveller dropping out of a group booking isn't an issue in itself, fine for the rest of the party to keep receiving the series. What does need handling is the whole booking cancelling after the group was already added to the event segment, that needs a way to remove them from it so the series stops.</p>
+
+      <div class="callout open">
+        <strong>Open product question, not yet decided</strong>
+        What happens when a repeat traveller books a genuinely second, separate trip while their first Booking Journey is still running? A second, parallel journey, or excluded while the first is active?
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="next">
+      <h2><span class="num">09</span>Suggested Next Steps</h2>
+      <p class="sub">To work through together</p>
+      <ul>
+        <li>Confirm the destination-content question first, it affects Long-window Mailers 2 and 6 directly, and shapes how much this can be templated versus hand-built per event</li>
+        <li>Decide Journey vs Sequence as the build mechanism before any content work starts</li>
+        <li>Agree the pilot event for the "one event first" rollout</li>
+        <li>Walk through the flagged <span class="badge merge">possible merge</span> mailers in the Long window together, particularly 4/5 and the lighter-content Mailer 8</li>
+        <li>Decide how infographics get handled, inline image versus hosted link, per mailer where one's genuinely wanted</li>
+      </ul>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+  </div>
+
+  <footer>Edusport Travel · Booking Journey · Internal Use Only · Draft, Not Yet Built</footer>
+</div>
+</body>
+</html>
